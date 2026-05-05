@@ -9,10 +9,9 @@ require_once __DIR__ . '/database.php';
 // Определение базового URL динамически
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
-$base_path = dirname(dirname(__FILE__)) . '/public';
 define('SITE_URL', $protocol . '://' . $host);
-define('SITE_ROOT', dirname(dirname(__FILE__)));
-define('PUBLIC_PATH', $base_path);
+define('SITE_ROOT', dirname(__FILE__) . '/..');
+define('ASSETS_URL', SITE_URL . '/assets');
 
 // Параметры сайта
 define('SITE_NAME', 'ООО "РАТЕКОМ" - Интранет');
@@ -44,7 +43,9 @@ if (!is_dir($log_dir)) {
 ini_set('error_log', $log_dir . '/error.log');
 
 // Запуск сессии
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Функция для безопасного вывода
 if (!function_exists('h')) {

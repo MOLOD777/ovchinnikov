@@ -14,15 +14,13 @@ if (!isLoggedIn()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo SITE_NAME; ?></title>
-    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="<?php echo SITE_URL; ?>/assets/img/favicon.ico">
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-container">
             <div class="logo">
                 <a href="?page=dashboard">
-                    <img src="<?php echo SITE_URL; ?>/assets/img/logo.png" alt="РАТЕКОМ" class="logo-img">
                     <span><?php echo SITE_NAME; ?></span>
                 </a>
             </div>

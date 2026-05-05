@@ -36,13 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $update = $conn->prepare('UPDATE employees SET last_login = NOW() WHERE id = ?');
                 $update->bind_param('i', $user['id']);
                 $update->execute();
+                logAction('Вход в систему', $email);
                 
                 redirect(SITE_URL . '?page=dashboard');
             } else {
                 $error = 'Неверный пароль';
+                logAction('Ошибка входа', 'Неверный пароль для: ' . $email);
             }
         } else {
             $error = 'Пользователь не найден';
+            logAction('Ошибка входа', 'Пользователь не найден: ' . $email);
         }
         
         $stmt->close();
@@ -54,8 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Вход - <?php echo SITE_NAME; ?></title>
-    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
 </head>
 <body class="login-page">
     <div class="login-container">
@@ -73,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" class="login-form">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required autofocus>
                 </div>
                 
                 <div class="form-group">
@@ -84,8 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn btn-primary">Войти</button>
             </form>
             
-            <p class="login-info">Тестовые учётные данные:<br>
+            <p class="login-info"><strong>Тестовые учётные данные:</strong><br>
             Email: <code>user@ratecom.ru</code><br>
+            Пароль: <code>password123</code></p>
+            
+            <p class="login-info" style="background-color: #e8f4f8;">
+            <strong>Администратор:</strong><br>
+            Email: <code>admin@ratecom.ru</code><br>
             Пароль: <code>password123</code></p>
         </div>
     </div>
