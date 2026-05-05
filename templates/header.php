@@ -12,14 +12,19 @@ if (!isLoggedIn()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo SITE_NAME; ?></title>
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo SITE_URL; ?>/assets/img/favicon.ico">
 </head>
 <body>
     <header class="main-header">
         <div class="header-container">
             <div class="logo">
-                <a href="?page=dashboard"><?php echo SITE_NAME; ?></a>
+                <a href="?page=dashboard">
+                    <img src="<?php echo SITE_URL; ?>/assets/img/logo.png" alt="РАТЕКОМ" class="logo-img">
+                    <span><?php echo SITE_NAME; ?></span>
+                </a>
             </div>
             
             <nav class="main-nav">
@@ -35,9 +40,10 @@ if (!isLoggedIn()) {
             </nav>
             
             <div class="user-menu">
-                <a href="?page=profile" class="user-profile">
+                <span class="user-profile">
                     <?php echo h($_SESSION['user_name']); ?>
-                </a>
+                </span>
+                <a href="?page=profile" class="btn btn-sm">Профиль</a>
                 <a href="?page=logout" class="btn btn-logout">Выход</a>
             </div>
         </div>

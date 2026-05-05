@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная точка входа приложения
+ * Главная точка входа приложения для OpenServer
  */
 
 require_once __DIR__ . '/../config/config.php';
@@ -15,7 +15,7 @@ switch ($page) {
         if (isLoggedIn()) {
             redirect(SITE_URL . '?page=dashboard');
         }
-        require_once __DIR__ . '/../src/pages/login.php';
+        require_once SITE_ROOT . '/src/pages/login.php';
         break;
         
     case 'logout':
@@ -27,42 +27,42 @@ switch ($page) {
         if (!isLoggedIn()) {
             redirect(SITE_URL . '?page=login');
         }
-        require_once __DIR__ . '/../src/pages/dashboard.php';
+        require_once SITE_ROOT . '/src/pages/dashboard.php';
         break;
         
     case 'news':
         if (!isLoggedIn()) {
             redirect(SITE_URL . '?page=login');
         }
-        require_once __DIR__ . '/../src/pages/news.php';
+        require_once SITE_ROOT . '/src/pages/news.php';
         break;
         
     case 'employees':
         if (!isLoggedIn()) {
             redirect(SITE_URL . '?page=login');
         }
-        require_once __DIR__ . '/../src/pages/employees.php';
+        require_once SITE_ROOT . '/src/pages/employees.php';
         break;
         
     case 'profile':
         if (!isLoggedIn()) {
             redirect(SITE_URL . '?page=login');
         }
-        require_once __DIR__ . '/../src/pages/profile.php';
+        require_once SITE_ROOT . '/src/pages/profile.php';
         break;
         
     case 'documents':
         if (!isLoggedIn()) {
             redirect(SITE_URL . '?page=login');
         }
-        require_once __DIR__ . '/../src/pages/documents.php';
+        require_once SITE_ROOT . '/src/pages/documents.php';
         break;
         
     case 'admin':
         if (!isLoggedIn() || !isAdmin()) {
             redirect(SITE_URL . '?page=dashboard');
         }
-        require_once __DIR__ . '/../src/pages/admin/dashboard.php';
+        require_once SITE_ROOT . '/src/pages/admin/dashboard.php';
         break;
         
     default:

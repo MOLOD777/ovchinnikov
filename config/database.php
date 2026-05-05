@@ -1,8 +1,9 @@
 <?php
 /**
- * Конфигурация подключения к базе данных
+ * Конфигурация подключения к базе данных для OpenServer 5.4.3
  */
 
+// Параметры подключения OpenServer (стандартные)
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
@@ -17,6 +18,7 @@ class Database {
     
     private function __construct() {
         try {
+            // Используем mysqli для подключения
             $this->connection = new mysqli(
                 DB_HOST,
                 DB_USER,
@@ -31,6 +33,8 @@ class Database {
             
             $this->connection->set_charset(DB_CHARSET);
         } catch (Exception $e) {
+            // Логирование ошибки
+            error_log('Database Error: ' . $e->getMessage());
             die('Ошибка БД: ' . $e->getMessage());
         }
     }
